@@ -1,0 +1,64 @@
+﻿@page "/notes"
+
+@using Notepad.Services
+@using Notepad.Models
+
+@inject NotesService NotesService
+@inject NavigationManager Navigation
+
+<h3>Lista de Notas</h3>
+
+<button @onclick="IrAgregarNota">Agregar Nota</button>
+
+@if (notas == null)
+{
+    <p>Cargando...</p>
+}
+else if (!notas.Any())
+{
+    <p>No hay notas disponibles.</p>
+}
+else
+{
+    <ul>
+        @foreach (var note in notas)
+        {
+            <li>
+                <strong>@note.Title</strong> - @note.Content
+                <button @onclick="() => VerDetalles(note.Id)">Detalles</button>
+                <button @onclick="() => EditarNota(note.Id)">Editar</button>
+                <button @onclick="() => EliminarNota(note.Id)">Eliminar</button>
+            </li>
+        }
+    </ul>
+}
+
+@code {
+    private List<Notes> notas;
+
+    protected override async Task OnInitializedAsync()
+    {
+        notas = await NotesService.GetAllNotesAsync();
+    }
+
+    private void IrAgregarNota()
+    {
+        Navigation.NavigateTo("/add-note");
+    }
+
+    private void EditarNota(int id)
+    {
+        Navigation.NavigateTo($"/edit-note/{id}");
+    }
+
+    private void VerDetalles(int id)
+    {
+        Navigation.NavigateTo($"/note-details/{id}");
+    }
+
+    private async Task EliminarNota(int id)
+    {
+        await NotesService.DeleteNoteAsync(id);
+        notas = await NotesService.GetAllNotesAsync();
+    }
+}

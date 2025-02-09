@@ -1,5 +1,8 @@
 ﻿using Microsoft.Extensions.Logging;
-
+using Microsoft.EntityFrameworkCore;
+using System;
+using Notepad.Data;
+using Notepad.Services;
 namespace Notepad
 {
     public static class MauiProgram
@@ -20,6 +23,17 @@ namespace Notepad
     		builder.Services.AddBlazorWebViewDeveloperTools();
     		builder.Logging.AddDebug();
 #endif
+
+            builder.Services.AddDbContext<AppDbContext>(options =>
+               options.UseSqlServer(@"Data Source=DESKTOP-G786A4S\SQLEXPRESS;
+                                      Initial Catalog=bloc;
+                                      Integrated Security=True;
+                                      Encrypt=False;
+                                      TrustServerCertificate=True"));
+
+            builder.Services.AddScoped<NotesService>();
+            builder.Services.AddScoped<PhotosService>();
+
 
             return builder.Build();
         }

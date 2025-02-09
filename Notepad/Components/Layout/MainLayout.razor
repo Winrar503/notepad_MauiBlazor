@@ -1,4 +1,4 @@
-﻿@inherits LayoutComponentBase
+﻿@* @inherits LayoutComponentBase
 
 <div class="page">
     <div class="sidebar">
@@ -15,3 +15,44 @@
         </article>
     </main>
 </div>
+ *@
+
+@inherits LayoutComponentBase
+@inject NavigationManager Navigation
+
+@{
+    // Ocultar header y footer si estamos en la página de agregar nota
+    bool hideLayout = Navigation.Uri.Contains("/add-note") || Navigation.Uri.Contains("/notes");
+}
+
+@if (!hideLayout)
+{
+            <div class="main-layout">
+                <header>
+                    <h1>Bloc de Notas</h1>
+                    <nav>
+                        <ul>
+                            <li><a href="/notes">📜 Notas</a></li>
+                            <li><a href="/add-note">📝 Agregar Nota</a></li>
+                        </ul>
+                    </nav>
+                </header>
+
+                <main>
+            @Body
+                </main>
+        @* 
+            <footer>
+                <p>© 2025 Bloc de Notas - Creado con ❤️</p>
+            </footer> *@
+            </div>
+}
+else
+{
+            <div class="only-body">
+        @Body
+            </div>
+}
+
+<!-- Enlace al CSS -->
+<link rel="stylesheet" href="~/css/inicio/layout.css">
