@@ -17,42 +17,74 @@
 </div>
  *@
 
+
+@* @inherits LayoutComponentBase
+@inject NavigationManager Navigation
+@{
+    bool hideLayout = Navigation.Uri.Contains("/add-note") || Navigation.Uri.Contains("/notes");
+}
+@if (!hideLayout)
+{
+    <div class="main-layout">
+        <header>
+            <h1>Bloc de Notas</h1>
+            <nav>
+                <ul>
+                    <li><a href="/notes">📜 Notas</a></li>
+                    <li><a href="/add-note">📝 Agregar Nota</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <main>
+            @Body
+        </main>
+    </div>
+}
+else
+{
+    <div class="only-body">
+        @Body
+    </div>
+}
+<link rel="stylesheet" href="~/css/inicio/layout"> *@
+
+
+
 @inherits LayoutComponentBase
 @inject NavigationManager Navigation
-
+@namespace Notepad.Components.Layout
 @{
-    // Ocultar header y footer si estamos en la página de agregar nota
     bool hideLayout = Navigation.Uri.Contains("/add-note") || Navigation.Uri.Contains("/notes");
 }
 
 @if (!hideLayout)
 {
-            <div class="main-layout">
-                <header>
-                    <h1>Bloc de Notas</h1>
-                    <nav>
-                        <ul>
-                            <li><a href="/notes">📜 Notas</a></li>
-                            <li><a href="/add-note">📝 Agregar Nota</a></li>
-                        </ul>
-                    </nav>
-                </header>
+    <div class="main-layout">
+        <header>
+            <h1>Bloc de Notas</h1>
+            <nav>
+                <ul>
+                    <li><a href="/notes">📜 Notas</a></li>
+                    <li><a href="/add-note">📝 Agregar Nota</a></li>
+                </ul>
+            </nav>
+        </header>
 
-                <main>
+        <main>
             @Body
-                </main>
-        @* 
-            <footer>
-                <p>© 2025 Bloc de Notas - Creado con ❤️</p>
-            </footer> *@
-            </div>
+        </main>
+
+        <footer>
+            <p>© 2025 Bloc de Notas - Creado con ❤️</p>
+        </footer>
+    </div>
 }
 else
 {
-            <div class="only-body">
+    <div class="only-body">
         @Body
-            </div>
+    </div>
 }
 
-<!-- Enlace al CSS -->
-<link rel="stylesheet" href="~/css/inicio/layout.css">
+<link rel="stylesheet" href="css/inicio/layout.css">

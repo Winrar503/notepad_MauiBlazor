@@ -13,9 +13,9 @@ namespace Notepad.Models
         public byte[] Photo { get; set; }
         public string NamePhoto { get; set; }
 
-        //[NotMapped]
-        //public int Top_Aux { get; set; }
-        //public Notes Notes { get; set; }
+        [NotMapped]
+        public int Top_Aux { get; set; }
+        public Notes Notes { get; set; }
     }
 }
 

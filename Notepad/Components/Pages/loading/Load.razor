@@ -1,0 +1,30 @@
+﻿@* <h3>Load</h3>
+
+@code {
+        <div class="loader"></div>
+} *@
+@namespace Notepad.Pages
+@inject NavigationManager Navigation
+
+@code {
+    private bool isLoading = true;
+
+    protected override async Task OnInitializedAsync()
+    {
+        await Task.Delay(2000); // Espera 2 segundos antes de redirigir
+        isLoading = false;
+        Navigation.NavigateTo("/notes"); // Redirige a la lista de notas
+    }
+}
+
+@if (isLoading)
+{
+    <div class="loading-container">
+        <div class="loader"></div>
+        <p>Cargando...</p>
+    </div>
+}
+
+<link rel="stylesheet" href="~/css/loading/load.css">
+
+
