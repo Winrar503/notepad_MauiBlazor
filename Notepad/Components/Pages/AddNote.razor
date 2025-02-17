@@ -1,4 +1,4 @@
-﻿@page "/add-note"
+﻿@* @page "/add-note"
 
 @using Notepad.Services
 @using Notepad.Models
@@ -31,6 +31,41 @@
         }
     }
 
+    private void Cancelar()
+    {
+        Navigation.NavigateTo("/notes");
+    }
+}
+*@
+@page "/add-note"
+<link rel="stylesheet" href="css/add-note.css">
+@using Notepad.Services
+@using Notepad.Models
+@inject NotesService NotesService
+@inject NavigationManager Navigation
+<div class="add-note-container">
+    <h3 class="title">📝 Agregar Nota</h3>
+    <form class="note-form">
+        <label for="title">Título:</label>
+        <input type="text" id="title" @bind="newNote.Title" placeholder="Escribe un título..." />
+        <label for="content">Contenido:</label>
+        <textarea id="content" @bind="newNote.Content" placeholder="Escribe el contenido..."></textarea>
+        <div class="button-group">
+            <button type="button" class="btn save-btn" @onclick="GuardarNota">💾 Guardar</button>
+            <button type="button" class="btn cancel-btn" @onclick="Cancelar">❌ Cancelar</button>
+        </div>
+    </form>
+</div>
+@code {
+    private Notes newNote = new Notes();
+    private async Task GuardarNota()
+    {
+        if (!string.IsNullOrWhiteSpace(newNote.Title) && !string.IsNullOrWhiteSpace(newNote.Content))
+        {
+            await NotesService.AddNoteAsync(newNote);
+            Navigation.NavigateTo("/notes");
+        }
+    }
     private void Cancelar()
     {
         Navigation.NavigateTo("/notes");
