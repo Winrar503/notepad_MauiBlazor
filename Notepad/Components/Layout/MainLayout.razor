@@ -18,7 +18,7 @@
  *@
 
 
-@* @inherits LayoutComponentBase
+@inherits LayoutComponentBase
 @inject NavigationManager Navigation
 @{
     bool hideLayout = Navigation.Uri.Contains("/add-note") || Navigation.Uri.Contains("/notes");
@@ -37,21 +37,21 @@
         </header>
 
         <main>
-            @Body
+            @* @Body *@
         </main>
     </div>
 }
 else
 {
     <div class="only-body">
-        @Body
+@*         @Body *@
     </div>
 }
-<link rel="stylesheet" href="~/css/inicio/layout"> *@
+<link rel="stylesheet" href="~/css/inicio/layout">
 
 
 
-@inherits LayoutComponentBase
+@* @inherits LayoutComponentBase
 @inject NavigationManager Navigation
 @namespace Notepad.Components.Layout
 @{
@@ -88,3 +88,4 @@ else
 }
 
 <link rel="stylesheet" href="css/inicio/layout.css">
+ *@
