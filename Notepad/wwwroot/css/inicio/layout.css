@@ -1,4 +1,4 @@
-﻿/* Estilos generales */
+﻿ Estilos generales 
 body {
     font-family: Arial, sans-serif;
     background-color: #1e1e1e;
@@ -12,7 +12,7 @@ body {
     height: 100vh;
 }
 
-/* Estilos para el contenedor de carga */
+ Estilos para el contenedor de carga 
 .loading-container {
     display: flex;
     flex-direction: column;
@@ -22,7 +22,7 @@ body {
     font-size: 20px;
 }
 
-/* Estilos para el loader */
+ Estilos para el loader 
 .loader {
     width: 16px;
     height: 16px;

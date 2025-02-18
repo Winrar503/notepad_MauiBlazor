@@ -1,24 +1,4 @@
-﻿@* @inherits LayoutComponentBase
-
-<div class="page">
-    <div class="sidebar">
-        <NavMenu />
-    </div>
-
-    <main>
-        <div class="top-row px-4">
-            <a href="https://learn.microsoft.com/aspnet/core/" target="_blank">About</a>
-        </div>
-
-        <article class="content px-4">
-            @Body
-        </article>
-    </main>
-</div>
- *@
-
-
-@inherits LayoutComponentBase
+﻿@inherits LayoutComponentBase
 @inject NavigationManager Navigation
 @{
     bool hideLayout = Navigation.Uri.Contains("/add-note") || Navigation.Uri.Contains("/notes");
@@ -48,44 +28,3 @@ else
     </div>
 }
 <link rel="stylesheet" href="~/css/inicio/layout">
-
-
-
-@* @inherits LayoutComponentBase
-@inject NavigationManager Navigation
-@namespace Notepad.Components.Layout
-@{
-    bool hideLayout = Navigation.Uri.Contains("/add-note") || Navigation.Uri.Contains("/notes");
-}
-
-@if (!hideLayout)
-{
-    <div class="main-layout">
-        <header>
-            <h1>Bloc de Notas</h1>
-            <nav>
-                <ul>
-                    <li><a href="/notes">📜 Notas</a></li>
-                    <li><a href="/add-note">📝 Agregar Nota</a></li>
-                </ul>
-            </nav>
-        </header>
-
-        <main>
-            @Body
-        </main>
-
-        <footer>
-            <p>© 2025 Bloc de Notas - Creado con ❤️</p>
-        </footer>
-    </div>
-}
-else
-{
-    <div class="only-body">
-        @Body
-    </div>
-}
-
-<link rel="stylesheet" href="css/inicio/layout.css">
- *@

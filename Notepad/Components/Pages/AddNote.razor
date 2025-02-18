@@ -1,43 +1,4 @@
-﻿@* @page "/add-note"
-
-@using Notepad.Services
-@using Notepad.Models
-
-@inject NotesService NotesService
-@inject NavigationManager Navigation
-
-<h3>Agregar Nota</h3>
-
-<form>
-    <label for="title">Título:</label>
-    <input id="title" @bind="newNote.Title" />
-
-    <label for="content">Contenido:</label>
-    <textarea id="content" @bind="newNote.Content"></textarea>
-
-    <button type="button" @onclick="GuardarNota">Guardar</button>
-    <button type="button" @onclick="Cancelar">Cancelar</button>
-</form>
-
-@code {
-    private Notes newNote = new Notes();
-
-    private async Task GuardarNota()
-    {
-        if (!string.IsNullOrWhiteSpace(newNote.Title) && !string.IsNullOrWhiteSpace(newNote.Content))
-        {
-            await NotesService.AddNoteAsync(newNote);
-            Navigation.NavigateTo("/notes");
-        }
-    }
-
-    private void Cancelar()
-    {
-        Navigation.NavigateTo("/notes");
-    }
-}
-*@
-@page "/add-note"
+﻿@page "/add-note"
 <link rel="stylesheet" href="css/add-note.css">
 @using Notepad.Services
 @using Notepad.Models
