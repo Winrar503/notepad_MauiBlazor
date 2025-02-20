@@ -1,8 +1,4 @@
-﻿@* <h3>Load</h3>
-
-@code {
-        <div class="loader"></div>
-} *@
+﻿@page "/load"
 @namespace Notepad.Pages
 @inject NavigationManager Navigation
 
@@ -13,7 +9,7 @@
     {
         await Task.Delay(2000); // Espera 2 segundos antes de redirigir
         isLoading = false;
-        Navigation.NavigateTo("/notes"); // Redirige a la lista de notas
+        Navigation.NavigateTo("/Home", forceLoad: true); // Redirige a la lista de notas
     }
 }
 
@@ -25,6 +21,8 @@
     </div>
 }
 
+<!-- Enlace al CSS de la animación -->
 <link rel="stylesheet" href="~/css/loading/load.css">
 
+<link rel="stylesheet" href="css/loading/load.css">
 

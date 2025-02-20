@@ -8,16 +8,16 @@
 
  <Router AppAssembly="@typeof(MauiProgram).Assembly">
     <Found Context="routeData">
-        <RouteView RouteData="@routeData" DefaultLayout="@typeof(Layout.MainLayout)" />
+        <RouteView RouteData="@routeData" />
         <FocusOnNavigate RouteData="@routeData" Selector="h1" />
     </Found>
     <NotFound>
-        <RedirectToDefault />
+        <RedirectToNotes />
     </NotFound>
 </Router>
 
 @code {
-    private class RedirectToDefault : ComponentBase
+    private class RedirectToNotes : ComponentBase
     {
         [Inject] private NavigationManager Navigation { get; set; } = default!;
 
@@ -27,3 +27,5 @@
         }
     }
 }
+
+
